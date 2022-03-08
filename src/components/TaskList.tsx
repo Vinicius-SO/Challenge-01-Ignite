@@ -15,7 +15,12 @@ export function TaskList() {
   const [newTaskTitle, setNewTaskTitle] = useState('');
 
   function getId():number{
-    let id = Math.floor(Math.random() * (100 - 1) + 1)
+    let index;
+    let id:number;
+    while(index !== -1){
+      id = Math.floor(Math.random() * (100 - 1) + 1)
+      index = tasks.findIndex(task => task.id === id && true )
+    }
     return id
   }
   function handleCreateNewTask() {
