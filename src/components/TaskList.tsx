@@ -24,13 +24,13 @@ export function TaskList() {
     return id
   }
   function handleCreateNewTask() {
-    let input = document.getElementsByTagName('input')
-    setTasks(tasks.concat({
-      id: getId(),
-      title: newTaskTitle,
-      isComplete: false
-    }))
-    input.value = ''
+    if(newTaskTitle !== ''){
+      setTasks(tasks.concat({
+        id: getId(),
+        title: newTaskTitle,
+        isComplete: false
+      }))
+    }
 
   }
 
