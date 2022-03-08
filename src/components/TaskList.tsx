@@ -15,21 +15,30 @@ export function TaskList() {
   const [newTaskTitle, setNewTaskTitle] = useState('');
 
   function getId():number{
-    let id = Math.random() * (100 - 1) + 1
+    let id = Math.floor(Math.random() * (100 - 1) + 1)
     return id
   }
   function handleCreateNewTask() {
+    let input = document.getElementsByTagName('input')
     setTasks(tasks.concat({
       id: getId(),
       title: newTaskTitle,
       isComplete: false
     }))
+    input.value = ''
+
   }
 
   function handleToggleTaskCompletion(id: number) {
     let tasksUpdated:Task[] = tasks
-    tasks.forEach(task => task.isComplete = task.id === id && true )
-    setTasks([...tasksUpdated])
+    let index:number = -1 ;
+    index = tasks.findIndex(task => task.id === id && true )
+    if (index !== -1)
+    {
+      tasksUpdated[index].isComplete = !tasksUpdated[index].isComplete 
+    }
+      setTasks([...tasksUpdated])
+    console.log(tasks)
   }
 
   function handleRemoveTask(id: number) {
