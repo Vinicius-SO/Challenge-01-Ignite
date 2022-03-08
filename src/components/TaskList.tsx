@@ -14,29 +14,27 @@ export function TaskList() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTaskTitle, setNewTaskTitle] = useState('');
 
+  function getId():number{
+    let id = Math.random() * (100 - 1) + 1
+    return id
+  }
   function handleCreateNewTask() {
     setTasks(tasks.concat({
-      id: Math.random() * (100 - 1) + 1,
+      id: getId(),
       title: newTaskTitle,
       isComplete: false
     }))
   }
 
   function handleToggleTaskCompletion(id: number) {
-    
     let tasksUpdated:Task[] = tasks
     tasks.forEach(task => task.isComplete = task.id === id && true )
-    setTasks(tasksUpdated)
-    console.log('Feito')
-    // Altere entre `true` ou `false` o campo `isComplete` de uma task com dado ID
+    setTasks([...tasksUpdated])
   }
 
   function handleRemoveTask(id: number) {
-    
     let tasksUpdated:Task[] = tasks.filter(task => task.id !== id)
-    setTasks(tasksUpdated)
-    console.log(tasks)
-
+    setTasks([...tasksUpdated])
   }
 
   return (
